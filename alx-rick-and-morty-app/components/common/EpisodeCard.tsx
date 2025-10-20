@@ -1,6 +1,6 @@
-import {EpisodeProps} from '@/interfaces/index';
+import {EpisodeCardProps} from '@/interfaces/index';
 
- const EpisodeCard = ({ id, name, air_date, episode }: EpisodeProps) => {
+ const EpisodeCard = ({ id, name, air_date, episode }: EpisodeCardProps) => {
   return (
     <div key={id} className="bg-white cursor-pointer shadow-md rounded-lg p-4 m-4 transition-transform duration-200 hover:scale-105">
         <div className="flex justify-between items-center">

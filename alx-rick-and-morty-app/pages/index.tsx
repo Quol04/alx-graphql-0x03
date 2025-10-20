@@ -1,15 +1,14 @@
 import { useQuery } from "@apollo/client/react"
 import { GET_EPISODES } from "@/graphql/queries"
-import { EpisodeProps } from "@/interfaces"
+import { EpisodeCardProps, EpisodesData } from "@/interfaces"
 import EpisodeCard from "@/components/common/EpisodeCard"
 import { useEffect, useState } from "react"
-
 
 
 const Home: React.FC = () => {
 
   const [page, setPage] = useState<number>(1)
-  const { loading, error, data, refetch } = useQuery(GET_EPISODES, {
+  const { loading, error, data, refetch } = useQuery<EpisodesData>(GET_EPISODES, {
     variables: {
       page: page
     }
@@ -35,7 +34,7 @@ const Home: React.FC = () => {
       {/* Main Content */}
       <main className="flex-grow p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {results && results.map(({ id, name, air_date, episode }: EpisodeProps, key: number) => (
+          {results && results.map(({ id, name, air_date, episode }: EpisodeCardProps, key: number) => (
             <EpisodeCard
               id={id}
               name={name}
@@ -54,7 +53,7 @@ const Home: React.FC = () => {
             Previous
           </button>
           <button 
-            onClick={() => setPage(prev => prev < info.pages ? prev + 1 : prev)}
+            onClick={() => setPage(prev => prev < (info?.pages || 1) ? prev + 1 : prev)}
             className="bg-[#45B69C] text-white font-semibold py-2 px-6 rounded-lg shadow-lg hover:bg-[#3D9B80] transition duration-200 transform hover:scale-105">
             Next
           </button>

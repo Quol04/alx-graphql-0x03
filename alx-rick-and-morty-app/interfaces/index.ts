@@ -1,3 +1,10 @@
+export interface Info {
+  pages: number
+  next: number | null
+  prev: number | null
+  count: number
+}
+
 interface InfoProps {
     pages: number
     next: number
@@ -14,3 +21,10 @@ export interface EpisodeProps {
 }
 
 export type EpisodeCardProps = Pick<EpisodeProps, 'id' | 'name'| 'air_date' | "episode">
+
+export interface EpisodesData {
+  episodes: {
+    info: Info
+    results: EpisodeCardProps[]
+  }
+}
